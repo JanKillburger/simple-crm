@@ -1,0 +1,26 @@
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { User } from '../../models/user.class';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.scss'
+})
+export class UserComponent {
+
+  user = new User();
+
+  constructor(public dialog: MatDialog) { }
+  ngOnInit() {
+    // this.user.firstName = 'Jan';
+  }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogAddUserComponent, { data: this.user });
+    dialogRef.afterClosed().subscribe(result => console.log()
+    );
+  }
+}

@@ -1,11 +1,28 @@
-<mat-sidenav-container  class="example-container">
-  <mat-sidenav #sidenav mode="side" opened>Sidenav content</mat-sidenav>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened fixedInViewport>
+    <span>LOGO</span>
+    <mat-nav-list>
+      @for (link of list; track link) {
+      <a
+        mat-list-item
+        [routerLink]="link.route"
+        routerLinkActive="mdc-list-item--activated"
+      >
+        <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
+        {{ link.text }}
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content
     ><mat-toolbar color="primary">
       <mat-toolbar-row>
-        <button (click)="sidenav.toggle()" mat-button><mat-icon>menu</mat-icon></button>
+        <button (click)="sidenav.toggle()" mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
         <span>Simple CRM</span>
       </mat-toolbar-row>
-    </mat-toolbar></mat-sidenav-content
-  >
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
