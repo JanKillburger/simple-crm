@@ -1,30 +1,18 @@
 <table mat-table [dataSource]="users" class="mat-elevation-z8" #userTable>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="first name">
-    <th mat-header-cell *matHeaderCellDef> First Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> <a [routerLink]="element.id">{{element.firstName}} {{element.lastName}}</a> </td>
   </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="last name">
-    <th mat-header-cell *matHeaderCellDef> Last Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
   <ng-container matColumnDef="city">
     <th mat-header-cell *matHeaderCellDef> City </th>
     <td mat-cell *matCellDef="let element"> {{element.city}} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="birth date">
-    <th mat-header-cell *matHeaderCellDef> Birth Date </th>
-    <td mat-cell *matCellDef="let element"> {{element.birthDate | date}} </td>
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

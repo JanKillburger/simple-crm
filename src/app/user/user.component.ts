@@ -14,8 +14,8 @@ export class UserComponent {
   @ViewChild('userTable') userTable: any;
   private firestore: Firestore = inject(Firestore);
   user = new User();
-  users: User[] = [];
-  displayedColumns = ['first name', 'last name', 'birth date', 'city'];
+  users: object[] = [];
+  displayedColumns = ['name', 'email', 'city'];
 
   constructor(public dialog: MatDialog) { }
   async ngOnInit() {
@@ -29,7 +29,8 @@ export class UserComponent {
       birthDate: this.user.birthDate?.getTime(),
       street: this.user.street,
       zipCode: this.user.zipCode,
-      city: this.user.city
+      city: this.user.city,
+      email: this.user.email
     });
   }
 
@@ -37,10 +38,13 @@ export class UserComponent {
     this.users = [];
     const querySnapshot = await getDocs(collection(this.firestore, "users"));
     querySnapshot.forEach((doc) => {
-      const user = new User(doc.data());
+      const user = doc.data();
+      user['id'] = doc.id;
       this.users.push(user);
     });
     this.userTable.renderRows();
+    console.log(this.users);
+    
   }
 
   async getUser() {
@@ -50,7 +54,6 @@ export class UserComponent {
   }
 
   async openDialog() {
-    // await this.getUser();
     const dialogRef = this.dialog.open(DialogAddUserComponent, { data: this.user });
     dialogRef.afterClosed().subscribe(
       async result => {
@@ -59,6 +62,7 @@ export class UserComponent {
           await this.saveUser();
           this.getUsers();
         }
+        this.user = new User();
       }
     )
   };
