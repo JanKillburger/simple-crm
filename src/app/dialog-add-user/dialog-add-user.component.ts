@@ -13,14 +13,8 @@ export class DialogAddUserComponent {
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User
   ) {}
-  birthDate = new Date();
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  saveUser() {
-    // this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
   }
 }

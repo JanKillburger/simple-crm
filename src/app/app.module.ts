@@ -22,6 +22,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -49,6 +51,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
+    MatProgressBarModule,
+    MatTableModule,
     provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-e12dc", "appId": "1:225419284883:web:cc0f583c66fd7cbba9d866", "storageBucket": "simple-crm-e12dc.appspot.com", "apiKey": "AIzaSyB_eAeSTlrFd5yqqKIkPPU3KmMOTBdpPHE", "authDomain": "simple-crm-e12dc.firebaseapp.com", "messagingSenderId": "225419284883" })),
     provideFirestore(() => getFirestore())
   ],
